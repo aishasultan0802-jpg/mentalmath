@@ -1,5 +1,5 @@
 (function () {
-  const COUNTER_URL = "https://script.google.com/macros/s/AKfycbxToXXOoMLguymRzdm3AgSgSysFUTKkup581R-hpqyHvIV1p1yqZbjR9gIbKa8po/exec";
+  const COUNTER_URL = "https://script.google.com/macros/s/AKfycbwkhm2FhQbgdc18UpAotjOZ2vbbEALErgCmnp1FQhTh3U55pXVruKKq_TTCqPMBi2J83w/exec";
 
   const COUNT_ELEMENT_ID = "participantCount";
   const STORAGE_KEY = "sifahi_hesablama_visitor_id";
