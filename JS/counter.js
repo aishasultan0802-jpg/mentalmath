@@ -1,4 +1,4 @@
-```javascript
+
 (function () {
   const COUNTER_URL = "https://script.google.com/macros/s/AKfycbwkhm2FhQbgdc18UpAotjOZ2vbbEALErgCmnp1FQhTh3U55pXVruKKq_TTCqPMBi2J83w/exec";
 
