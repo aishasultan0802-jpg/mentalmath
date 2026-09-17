@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5efe6">
+<title data-i18n="result">Nəticə</title>
+<link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+<main class="app result-page">
+  <div class="intro game-main-intro result-intro">
+    <div class="result-header">
+      <div class="result-heading-wrap">
+        <div class="result-stars" id="resultStars" aria-label="Nəticə ulduzları"></div>
+        <h1 id="resultTitle">Nəticə</h1>
+        <p id="resultMessage">Nəticən hazırdır.</p>
+    <div id="certificateActionWrap" class="certificate-action-wrap" hidden>
+      <button type="button" id="certificateBtn" class="certificate-btn">SERTİFİKAT ƏLDƏ EDİN</button>
+    </div>
+
+      </div>
+
+    </div>
+
+    <div class="score-panel">
+      <div><span data-i18n="correctAnswers">Düzgün cavab</span><b id="correct">0</b></div>
+      <div><span data-i18n="wrongAnswers">Səhv cavab</span><b id="wrong">0</b></div>
+      <div><span data-i18n="time">Vaxt</span><b id="elapsedTime">0 saniyə</b></div>
+    </div>
+
+    <div class="report-heading"><span data-i18n="result">Nəticə</span><span class="report-line"></span></div>
+    <div id="answerReport" class="answer-report"></div>
+
+    <div id="certificateModal" class="certificate-modal" aria-hidden="true" hidden>
+      <div class="certificate-form-card" role="dialog" aria-modal="true" aria-labelledby="certificateFormTitle">
+        <button type="button" id="certificateClose" class="certificate-close" aria-label="Bağla">×</button>
+        <h2 id="certificateFormTitle">Sertifikat üçün məlumatlar</h2>
+        <p>Ad və soyadınızı yazın.</p>
+        <input type="text" id="certificateName" autocomplete="name" placeholder="AD, SOYAD" maxlength="80">
+        <button type="button" id="certificateCreate" class="certificate-create">SERTİFİKATI GÖSTƏR</button>
+        <div id="certificateError" class="certificate-error" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div id="certificateView" class="certificate-view" hidden>
+      <div class="certificate-paper">
+        <div class="certificate-border">
+          <img class="certificate-medal" src="./images/medal.png" alt="Medal">
+          <img class="certificate-math" src="./images/math.png" alt="Riyaziyyat">
+          <div class="certificate-kicker">ŞİFAHİ HESABLAMA</div>
+          <h2>SERTİFİKAT</h2>
+          <div class="certificate-line"></div>
+          <div id="certificateParticipant" class="certificate-participant"></div>
+          <p id="certificateText" class="certificate-text"></p>
+          <div class="certificate-stats">
+            <div><span>Düzgün verilən cavablar</span><b id="certificateQuestions">0</b></div>
+            <div><span>Ulduzlar</span><b id="certificateStars">★</b></div>
+          </div>
+          <div class="certificate-footer">
+            <div class="certificate-motto">
+              <div class="certificate-motto-quote">
+                <img src="./images/sum.png" alt="Riyaziyyat">
+                <span>“Riyaziyyat elmlərin şahı, hesab isə tacıdır!”</span>
+              </div>
+              <b>Karl Fridrix Qauss</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="certificate-view-actions">
+        <button type="button" id="certificateBack" class="certificate-btn secondary">NƏTİCƏYƏ QAYIT</button>
+        <button type="button" id="certificatePrint" class="certificate-btn">ÇAP ET</button>
+      </div>
+    </div>
+
+    <div class="result-actions">
+      <button type="button" class="back result-action primary" id="again" data-i18n="retry">↻ Yenidən oyna</button>
+      <button type="button" class="back result-action" id="homeBtn" data-i18n="homeMenu">Əsas menyu</button>
+    </div>
+  </div>
+</main>
+<script src="JS/lang.js" defer></script>
+<script src="JS/result.js" defer></script>
+<script src="JS/protection.js" defer></script>
+</body>
+</html>

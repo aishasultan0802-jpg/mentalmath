@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f5efe6">
+<title data-i18n="siteTitle">ŞİFAHİ HESABLAMA</title>
+<link rel="stylesheet" href="CSS/style.css">
+<style>
+/* Requested: remove decorative background circles/math symbols on the index page. */
+.game-main-intro:before,
+.game-main-intro:after,
+.intro-page:before,
+.intro-page:after{display:none !important;content:none !important;}
+/* Requested: compact language selector in the upper-right corner. */
+.game-main-intro .language-switch{
+  position:absolute !important;
+  top:8px !important;
+  right:8px !important;
+  left:auto !important;
+  bottom:auto !important;
+  display:flex !important;
+  align-items:center;
+  justify-content:center;
+  width:max-content;
+  gap:2px;
+  padding:2px;
+  border-radius:9px;
+  background:rgba(255,255,255,.92);
+  border:1px solid rgba(41,66,93,.10);
+  box-shadow:0 5px 12px rgba(55,70,75,.06);
+  transform:none !important;
+  z-index:20 !important;
+}
+.game-main-intro .language-switch button{
+  min-width:31px;
+  width:31px;
+  min-height:27px;
+  height:27px;
+  padding:0 4px;
+  border-radius:7px;
+  font-size:9px;
+  line-height:1;
+  letter-spacing:.25px;
+}
+</style>
+</head>
+<body>
+<main class="app game-menu-page">
+  <section class="screen active">
+    <div class="intro game-main-intro">
+      <div class="language-switch" aria-label="Language selector">
+        <button type="button" data-lang="az" aria-label="Azərbaycan dili">AZ</button>
+        <button type="button" data-lang="en" aria-label="English">EN</button>
+        <button type="button" data-lang="ru" aria-label="Русский">RU</button>
+      </div>
+      <div class="game-intro-heading"><div class="intro-mark" aria-hidden="true">∑</div><span data-i18n="siteTitle">ŞİFAHİ HESABLAMA</span></div>
+      <div class="game-intro-sub"><div class="quote-mark">“</div><span class="quote-text" data-i18n="quote">Riyaziyyat elmlərin şahı, hesab isə tacıdır!</span><div class="quote-mark">”</div><span class="quote-author" data-i18n="quoteAuthor">Karl Fridrix Qauss</span></div>
+      <div class="section-line"></div>
+
+      <div class="operation-grid">
+        <button type="button" class="operation add" data-mode="addsub" data-i18n-aria-label="addsub" aria-label="Toplama və Çıxma">
+          <div class="operation-lines">
+            <div class="operation-line"><span class="icon">+</span><span class="operation-word" data-i18n="add">Toplama</span></div>
+            <div class="operation-line"><span class="icon">−</span><span class="operation-word" data-i18n="sub">Çıxma</span></div>
+          </div>
+        </button>
+
+        <button type="button" class="operation mul" data-mode="muldiv" data-i18n-aria-label="muldiv" aria-label="Vurma və Bölmə">
+          <div class="operation-lines">
+            <div class="operation-line"><span class="icon">×</span><span class="operation-word" data-i18n="mul">Vurma</span></div>
+            <div class="operation-line"><span class="icon">÷</span><span class="operation-word" data-i18n="div">Bölmə</span></div>
+          </div>
+        </button>
+      </div>
+
+      <div class="practice-panel" aria-label="Məşqin quruluşu">
+        <div class="practice-items">
+          <div class="practice-item"><div class="practice-detail"><img class="practice-icon-image" src="images/target.png" alt=""><b data-i18n="correctMotto">Doğru Hesabla</b></div></div>
+          <div class="practice-item"><div class="practice-detail"><img class="practice-icon-image" src="images/lightningt.png" alt=""><b data-i18n="fastMotto">Çevik ol</b></div></div>
+          <div class="practice-item"><div class="practice-detail"><img class="practice-icon-image" src="images/badge.png" alt=""><b data-i18n="winMotto">Qalib ol</b></div></div>
+        </div>
+      </div>
+
+      <div class="menu-author footer-info-bar"><div class="footer-info-item"><strong><span data-i18n="preparedBy">Hazırladı:</span></strong> <a href="https://aishasultan0802-jpg.github.io/aisha-sultan-site/" target="_blank" rel="noopener noreferrer"><strong>Aişə Sultan</strong></a></div><span class="footer-divider" aria-hidden="true">|</span><div class="footer-info-item"><strong>Hazırlanma tarixi: 18.09.2026</strong></div><span class="footer-divider" aria-hidden="true">|</span><div class="footer-info-item"><a href="teqdimat.html"><strong>Təqdimat</strong></a></div><span class="footer-divider" aria-hidden="true">|</span><div class="footer-info-item"><strong>İştirakçılar:</strong> <strong id="participantCount" class="participant-counter">6</strong></div></div>
+      <div class="copyright">© <span id="copyrightYear"></span> Şifahi Hesablama. Bütün hüquqlar qorunur.</div>
+    </div>
+  </section>
+</main>
+<script src="JS/lang.js?v=20260912b" defer></script>
+<script src="JS/menu.js?v=20260912b" defer></script>
+<script src="JS/counter.js" defer></script>
+<script>document.getElementById("copyrightYear").textContent = new Date().getFullYear();</script>
+<script src="JS/protection.js" defer></script>
+</body>
+</html>
