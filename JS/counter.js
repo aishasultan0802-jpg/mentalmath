@@ -5,7 +5,7 @@
  * JSONP is used so the counter also works from a GitHub Pages site
  * without needing cross-origin request permissions.
  */
-const COUNTER_API_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+const COUNTER_API_URL = "https://script.google.com/macros/s/AKfycbxToXXOoMLguymRzdm3AgSgSysFUTKkup581R-hpqyHvIV1p1yqZbjR9gIbKa8poqZr/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
   const counterEl = document.getElementById("participantCount");
