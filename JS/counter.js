@@ -1,75 +1,76 @@
-
+```javascript
 (function () {
   const COUNTER_URL = "https://script.google.com/macros/s/AKfycbwkhm2FhQbgdc18UpAotjOZ2vbbEALErgCmnp1FQhTh3U55pXVruKKq_TTCqPMBi2J83w/exec";
+
   const COUNT_ELEMENT_ID = "participantCount";
-  const STORAGE_KEY = "sifahi_hesablama_visitor_id";
-  const COUNT_CACHE_KEY = "sifahi_hesablama_count";
+  const VISITOR_KEY = "sifahi_hesablama_visitor_id";
+  const COUNT_KEY = "sifahi_hesablama_count";
 
   function createVisitorId() {
-    if (window.crypto && typeof window.crypto.randomUUID === "function") {
-      return window.crypto.randomUUID();
-    }
-
-    return "visitor-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+    return "visitor-" +
+      Date.now() +
+      "-" +
+      Math.random().toString(36).substring(2, 15);
   }
 
   function getVisitorId() {
     try {
-      let visitorId = localStorage.getItem(STORAGE_KEY);
+      let id = localStorage.getItem(VISITOR_KEY);
 
-      if (!visitorId) {
-        visitorId = createVisitorId();
-        localStorage.setItem(STORAGE_KEY, visitorId);
+      if (!id) {
+        id = createVisitorId();
+        localStorage.setItem(VISITOR_KEY, id);
       }
 
-      return visitorId;
-    } catch (error) {
+      return id;
+    } catch (e) {
       return createVisitorId();
     }
   }
 
-  function updateCounter(count) {
+  function showCount(count) {
     const element = document.getElementById(COUNT_ELEMENT_ID);
 
-    if (element && Number.isFinite(Number(count))) {
-      const value = String(count);
-      element.textContent = value;
-
-      try {
-        localStorage.setItem(COUNT_CACHE_KEY, value);
-      } catch (error) {
-        // Local storage əlçatan deyilsə, davam et
-      }
+    if (!element || count === undefined || count === null) {
+      return;
     }
-  }
 
-  function showCachedCount() {
+    element.textContent = String(count);
+
     try {
-      const cachedCount = localStorage.getItem(COUNT_CACHE_KEY);
-
-      if (cachedCount !== null && cachedCount !== "") {
-        updateCounter(cachedCount);
-      }
-    } catch (error) {
-      // Local storage əlçatan deyilsə, davam et
-    }
+      localStorage.setItem(COUNT_KEY, String(count));
+    } catch (e) {}
   }
 
-  function requestCounter() {
-    const visitorId = encodeURIComponent(getVisitorId());
+  function showSavedCount() {
+    try {
+      const saved = localStorage.getItem(COUNT_KEY);
+
+      if (saved) {
+        showCount(saved);
+      }
+    } catch (e) {}
+  }
+
+  function loadCounter() {
     const callbackName =
-      "sifahiCounterCallback_" + Date.now() + "_" + Math.random().toString(36).slice(2);
+      "counterCallback_" +
+      Date.now() +
+      "_" +
+      Math.random().toString(36).substring(2, 8);
+
+    const visitorId = encodeURIComponent(getVisitorId());
 
     const script = document.createElement("script");
 
     window[callbackName] = function (data) {
-      if (data && data.ok && typeof data.count !== "undefined") {
-        updateCounter(data.count);
+      if (data && data.ok && data.count !== undefined) {
+        showCount(data.count);
       }
 
       try {
         delete window[callbackName];
-      } catch (error) {
+      } catch (e) {
         window[callbackName] = undefined;
       }
 
@@ -80,17 +81,18 @@
 
     script.src =
       COUNTER_URL +
-      "?action=visit&visitorId=" +
+      "?action=visit" +
+      "&visitorId=" +
       visitorId +
       "&prefix=" +
-      callbackName;
+      encodeURIComponent(callbackName);
 
     script.async = true;
 
     script.onerror = function () {
       try {
         delete window[callbackName];
-      } catch (error) {
+      } catch (e) {
         window[callbackName] = undefined;
       }
 
@@ -102,18 +104,18 @@
     document.head.appendChild(script);
   }
 
-  function startCounter() {
+  function start() {
     // Əvvəlki məlum sayı dərhal göstər
-    showCachedCount();
+    showSavedCount();
 
     // Sonra Google Sheets-dən aktual sayı al
-    requestCounter();
+    loadCounter();
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", startCounter);
+    document.addEventListener("DOMContentLoaded", start);
   } else {
-    startCounter();
+    start();
   }
 })();
 ```
